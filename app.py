@@ -164,7 +164,7 @@ with col2:
     </div>
     """, unsafe_allow_html=True)
 
-# 6. 접수 방법 및 배차 안내 (대체 기사 안내 문구 반영)
+# 6. 접수 방법 및 배차 안내 (옵션 1 문구 반영)
 st.markdown("""
 <div class="glass-card">
     <div class="section-header">📋 서비스 접수 절차</div>
@@ -175,7 +175,7 @@ st.markdown("""
     </p>
     <div style="background: rgba(56, 189, 248, 0.1); border-left: 3px solid #38BDF8; padding: 10px 14px; border-radius: 6px; margin-top: 10px;">
         <p style="color: #38BDF8; font-size: 0.88rem; margin: 0; line-height: 1.5; font-weight: 600;">
-            💡 <b>배차 안심 안내:</b> 예약이 밀려있거나 출발/목적지가 멀고 외진 지역인 경우, 동일하게 엄선된 <b>100% 비흡연 전문 협력 기사님</b>으로 대체 배차될 수 있습니다. 어떠한 경우에도 쾌적함과 안전을 최우선으로 지켜드립니다.
+            💡 <b>배차 안심 안내:</b> 예약이 밀려있거나 먼 외진 지역의 경우, 동일하게 엄선된 <b>100% 비흡연 전문 협력 기사님</b>으로 대체 배차될 수 있습니다. (이 경우 <b>보다 합리적이고 알뜰한 표준 요금</b>으로 안내해 드립니다.)
         </p>
     </div>
 </div>
