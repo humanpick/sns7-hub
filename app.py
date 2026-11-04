@@ -9,7 +9,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# 2. Humanpick 디자인 시스템 CSS 적용 (가독성 및 이미지 카드 스타일링)
+# 2. Humanpick 디자인 시스템 CSS 표준 적용 (사이버펑크 다크모드 & 글래스모피즘)
 st.markdown("""
 <style>
     @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
@@ -57,20 +57,27 @@ st.markdown("""
         padding-left: 10px;
     }
     
-    /* 입력창 위의 라벨 글자 색상 및 크기 선명하게 강제 수정 */
+    /* 입력창 위의 라벨 텍스트 가독성 강화 */
     .stTextInput label, .stRadio label, .stSelectbox label, .stTextArea label, .stDateInput label {
         color: #F8FAFC !important;
         font-size: 1.05rem !important;
         font-weight: 700 !important;
     }
     
-    /* 화이트 폼 입력창 스타일 (순백색 배경, 검은색 볼드체 텍스트) */
+    /* 🌟 모든 입력창 배경 순백색(#FFFFFF), 글자색 블랙(#000000) 강제 적용 */
     .stTextInput input, .stSelectbox select, .stTextArea textarea, .stDateInput input {
         background-color: #FFFFFF !important;
         color: #000000 !important;
         font-weight: 600 !important;
         border-radius: 8px !important;
         font-size: 1rem !important;
+        border: 1px solid #CBD5E1 !important;
+    }
+    
+    /* 드롭다운 셀렉트박스 내부 텍스트 색상 보정 */
+    .stSelectbox div[data-baseweb="select"] span {
+        color: #000000 !important;
+        font-weight: 600 !important;
     }
 
     /* 라디오 버튼 내부 선택 항목 글자색 선명하게 */
@@ -80,7 +87,7 @@ st.markdown("""
         font-size: 0.95rem !important;
     }
 
-    /* 폼 제출 버튼 가독성 강제 보정 */
+    /* 폼 제출 버튼 가독성 및 디자인 표준 보정 */
     div[data-testid="stForm"] button {
         width: 100% !important;
         background: linear-gradient(135deg, #8B5CF6, #EC4899) !important;
@@ -199,19 +206,17 @@ with st.form("service_form"):
     with col_f:
         transmission = st.radio("변속기 선택", ["오토", "스틱(수동)"], horizontal=True)
         
-    # 🌟 날짜 및 오전/오후 시간 선택 영역
+    # 🌟 깔끔하고 정돈된 날짜 및 시간 입력 레이아웃
     col_date, col_time = st.columns(2)
     with col_date:
         pickup_date = st.date_input("희망 날짜", value=datetime.date.today())
     with col_time:
         st.markdown('<label style="color: #F8FAFC; font-size: 1.05rem; font-weight: 700;">희망 시간</label>', unsafe_allow_html=True)
-        t1, t2, t3 = st.columns([1.2, 1.1, 1.1])
-        with t1:
-            ampm = st.selectbox("오전오후", ["오전", "오후"], index=1, label_visibility="collapsed") # 기본 오후
-        with t2:
-            hour = st.selectbox("시간", [f"{i}시" for i in range(1, 13)], index=7, label_visibility="collapsed") # 기본 8시(20시)
-        with t3:
-            minute = st.selectbox("분", ["00분", "30분"], index=0, label_visibility="collapsed")
+        sub_c1, sub_c2 = st.columns(2)
+        with sub_c1:
+            time_slot = st.selectbox("시간대", ["오전", "오후 (낮)", "오후 (저녁/야간)"], index=2, label_visibility="collapsed")
+        with sub_c2:
+            exact_time = st.selectbox("상세 시간", ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"], index=11, label_visibility="collapsed")
 
     col_c, col_d = st.columns(2)
     with col_c:
@@ -226,8 +231,8 @@ with st.form("service_form"):
     
     if submitted:
         if departure and destination and phone_number and car_number:
-            time_str = f"{ampm} {hour} {minute}"
-            st.success(f"🎉 [{service_type}] 접수가 정상적으로 완료되었습니다! ({pickup_date} {time_str}) 확인 후 빠르게 연락드리겠습니다.")
+            final_time_str = f"{time_slot} {exact_time}"
+            st.success(f"🎉 [{service_type}] 접수가 정상적으로 완료되었습니다! ({pickup_date} {final_time_str}) 확인 후 빠르게 연락드리겠습니다.")
         else:
             st.error("⚠️ 필수 항목(차량번호, 출발지, 도착지, 연락처)을 모두 입력해 주세요.")
 
