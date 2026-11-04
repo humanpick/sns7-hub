@@ -64,6 +64,12 @@ st.markdown("""
         border-radius: 8px !important;
     }
 
+    /* 라디오 버튼 텍스트 가독성 강화 */
+    div[data-testid="stRadio"] label {
+        color: #FFFFFF !important;
+        font-weight: 600 !important;
+    }
+
     /* 폼 제출 버튼 가독성 강제 보정 */
     div[data-testid="stForm"] button {
         width: 100% !important;
@@ -134,14 +140,14 @@ st.markdown("""
 <div class="glass-card">
     <div class="section-header">📋 탁송 접수 절차</div>
     <p style="color: #CBD5E1; font-size: 0.85rem; margin: 0;">
-        1단계: 아래 폼에 차량 정보(차종, 번호, 변속기)와 출발지, 도착지를 남겨주세요.<br>
+        1단계: 아래 폼에 차량 정보(차종, 번호, 유종, 변속기)와 출발지, 도착지를 남겨주세요.<br>
         2단계: 확인 즉시 안전 운행 가능 여부와 함께 신속하게 연락을 드립니다.<br>
         3단계: 안심하고 맡겨주시면 목적지까지 안전하게 인도해 드립니다.
     </p>
 </div>
 """, unsafe_allow_html=True)
 
-# 6. 실시간 탁송 접수 폼 (오토/스틱 선택 항목 추가)
+# 6. 실시간 탁송 접수 폼 (유종 및 직관적인 라디오 버튼 적용)
 st.markdown('<div class="section-header" style="margin-top: 15px;">✍️ 간편 탁송 접수하기</div>', unsafe_allow_html=True)
 
 with st.form("toksong_form"):
@@ -151,11 +157,12 @@ with st.form("toksong_form"):
     with col_b:
         car_number = st.text_input("차량 번호 (예: 123가 4567)", placeholder="차량 번호를 입력하세요")
         
+    # 유종 및 변속기 선택 (가로 배치)
     col_e, col_f = st.columns(2)
     with col_e:
-        transmission = st.selectbox("변속기 종류", ["오토 (Automatic)", "수동 (Manual / 스틱)"])
+        fuel_type = st.radio("유종 선택", ["휘발유(가솔린)", "경유(디젤)", "LPG", "전기(EV) / 하이브리드"], horizontal=True)
     with col_f:
-        phone_number = st.text_input("연락처 (휴대폰 번호)", placeholder="010-0000-0000")
+        transmission = st.radio("변속기 선택", ["오토", "스틱(수동)"], horizontal=True)
         
     col_c, col_d = st.columns(2)
     with col_c:
@@ -163,6 +170,7 @@ with st.form("toksong_form"):
     with col_d:
         destination = st.text_input("도착지 (예: 부산 해운대구 / 상세 주소)", placeholder="도착지를 입력하세요")
         
+    phone_number = st.text_input("연락처 (휴대폰 번호)", placeholder="010-0000-0000")
     memo = st.text_area("요청 및 특이사항 (선택)", placeholder="경유지나 특별히 요청하실 사항을 적어주세요.")
     
     submitted = st.form_submit_button("🚀 탁송 신청 및 접수하기")
