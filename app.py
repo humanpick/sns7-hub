@@ -9,7 +9,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# 2. Humanpick 디자인 시스템 CSS 적용 (가독성 및 정돈된 UI)
+# 2. Humanpick 디자인 시스템 CSS 적용 (가독성 및 이미지 카드 스타일링)
 st.markdown("""
 <style>
     @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
@@ -57,7 +57,7 @@ st.markdown("""
         padding-left: 10px;
     }
     
-    /* 🌟 입력창 위의 라벨 글자 색상 및 크기 선명하게 강제 수정 */
+    /* 입력창 위의 라벨 글자 색상 및 크기 선명하게 강제 수정 */
     .stTextInput label, .stRadio label, .stSelectbox label, .stTextArea label, .stDateInput label, .stTimeInput label {
         color: #F8FAFC !important;
         font-size: 1.05rem !important;
@@ -92,7 +92,6 @@ st.markdown("""
         margin-top: 10px;
     }
     
-    /* 버튼 내부 텍스트 및 아이콘 색상 강제 지정 */
     div[data-testid="stForm"] button p, 
     div[data-testid="stForm"] button span {
         color: #FFFFFF !important;
@@ -107,46 +106,65 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# 3. 헤더 및 소개 섹션
+# 3. 헤더 및 감성 이미지 배너 섹션
 st.markdown("<br>", unsafe_allow_html=True)
 st.markdown("""
-<div class="glass-card">
+<div class="glass-card" style="text-align: center;">
     <div class="hero-title">후미남 시그니처 로드탁송 & 대리운전</div>
-    <p style="text-align: center; color: #CBD5E1; font-size: 1rem; line-height: 1.5; margin-bottom: 0;">
+    <p style="color: #CBD5E1; font-size: 1rem; line-height: 1.5; margin-bottom: 15px;">
         "화려한 수식어 대신, 꺾이지 않는 진정성과 행동으로 증명합니다."<br>
         <span style="color: #38BDF8; font-weight: 600; font-size: 0.9rem;">100% 비흡연 · 철저한 안심 브리핑 · 프리미엄 맞춤 운행</span>
     </p>
 </div>
 """, unsafe_allow_html=True)
 
-# 4. 왜 나에게 맡겨야 하는지 & 서비스 안내
+# 🌟 고품질 자동차 주행 감성 이미지 삽입
+st.image(
+    "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80",
+    caption="안전과 신뢰를 싣고 목적지까지 완벽하게 이동합니다.",
+    use_container_width=True
+)
+
+# 4. 로드탁송이란? 개념 설명 섹션
+st.markdown("""
+<div class="glass-card" style="margin-top: 16px;">
+    <div class="section-header">📌 로드탁송(Road Tak-song)이란?</div>
+    <p style="color: #E2E8F0; font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400;">
+        <b>로드탁송</b>은 전문 프로 드라이버가 고객님의 차량에 직접 탑승하여 출발지부터 목적지까지 안전하게 직접 운전하여 이동시키는 프리미엄 차량 탁송 서비스입니다. 자동차 거래, 장거리 이동, 법인 차량 탁송 등 캐리어 트럭이 진입하기 어렵거나 신속하고 안전한 직접 운행이 필요할 때 가장 확실한 선택입니다.
+    </p>
+</div>
+""", unsafe_allow_html=True)
+
+# 5. 왜 나에게 맡겨야 하는지 & 서비스 특징
 col1, col2 = st.columns(2)
 
 with col1:
     st.markdown("""
-    <div class="glass-card" style="min-height: 210px;">
+    <div class="glass-card" style="min-height: 220px;">
         <div class="section-header">🚗 이런 분께 필요합니다</div>
         <ul style="color: #F1F5F9; font-size: 0.9rem; padding-left: 15px; margin: 0; line-height: 1.7; font-weight: 500;">
             <li>자동차 거래 후 안전하게 탁송이 필요할 때</li>
             <li>술자리나 야간 일정 후 안전한 대리운전이 필요할 때</li>
             <li>장거리 이동 및 지방 출장으로 운행이 부담될 때</li>
+            <li>법인 차량 및 중요한 차량을 믿고 맡길 기사가 필요할 때</li>
         </ul>
     </div>
     """, unsafe_allow_html=True)
 
 with col2:
     st.markdown("""
-    <div class="glass-card" style="min-height: 210px;">
+    <div class="glass-card" style="min-height: 220px;">
         <div class="section-header">🛡️ 왜 후미남인가?</div>
         <ul style="color: #F1F5F9; font-size: 0.9rem; padding-left: 15px; margin: 0; line-height: 1.7; font-weight: 500;">
             <li><b>100% 비흡연 운행</b>으로 쾌적한 실내 유지</li>
             <li>출발부터 도착까지 철저한 사진/문자 안심 브리핑</li>
-            <li>프로 드라이버의 투철한 책임 안전 의식</li>
+            <li>시련을 딛고 일어선 프로 드라이버의 책임 안전 의식</li>
+            <li>철저한 배상 책임 보험 가입 완비</li>
         </ul>
     </div>
     """, unsafe_allow_html=True)
 
-# 5. 접수 방법 안내
+# 6. 접수 방법 안내
 st.markdown("""
 <div class="glass-card">
     <div class="section-header">📋 서비스 접수 절차</div>
@@ -158,11 +176,10 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# 6. 실시간 간편 접수 폼 (탁송 & 대리 통합)
+# 7. 실시간 간편 접수 폼 (탁송 & 대리 통합)
 st.markdown('<div class="section-header" style="margin-top: 20px;">✍️ 간편 서비스 접수하기</div>', unsafe_allow_html=True)
 
 with st.form("service_form"):
-    # 🌟 서비스 종류 선택 (탁송 / 대리운전)
     service_type = st.radio("신청 서비스 종류", ["로드탁송", "대리운전"], horizontal=True)
     
     col_a, col_b = st.columns(2)
@@ -171,14 +188,12 @@ with st.form("service_form"):
     with col_b:
         car_number = st.text_input("차량 번호", placeholder="예: 123가 4567")
         
-    # 유종 및 변속기 선택
     col_e, col_f = st.columns(2)
     with col_e:
         fuel_type = st.radio("유종 선택", ["휘발유(가솔린)", "경유(디젤)", "LPG", "전기(EV)/하이브리드"], horizontal=True)
     with col_f:
         transmission = st.radio("변속기 선택", ["오토", "스틱(수동)"], horizontal=True)
         
-    # 🌟 깔끔하게 정돈된 날짜 및 시간 선택 입력창
     col_date, col_time = st.columns(2)
     with col_date:
         pickup_date = st.date_input("희망 날짜", value=datetime.date.today())
