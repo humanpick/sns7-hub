@@ -100,10 +100,11 @@ st.markdown("""
 st.markdown("<br>", unsafe_allow_html=True)
 st.markdown("""
 <div class="glass-card">
-    <div class="hero-title">후미남 프리미엄 로드탁송</div>
+    <div class="hero-title">후미남 시그니처 로드탁송</div>
     <p style="text-align: center; color: #94A3B8; font-size: 0.9rem; margin-bottom: 0;">
-        "후각과 미각은 잃었지만, 안전을 향한 감각은 선명합니다."<br>
-        요란한 말 대신, 묵직한 책임감과 행동으로 증명합니다.
+        "."<br>
+        "죽음의 문턱에서 다시 핸들을 잡은 이유.
+        화려한 수식어 대신, 꺽이지 않는 진정성과 행동으로 증명합니다."
     </p>
 </div>
 """, unsafe_allow_html=True)
@@ -116,7 +117,7 @@ with col1:
     <div class="glass-card" style="min-height: 190px;">
         <div class="section-header">🚗 이런 분께 필요합니다</div>
         <ul style="color: #CBD5E1; font-size: 0.85rem; padding-left: 15px; margin: 0; line-height: 1.6;">
-            <li>신차 출고 후 안전하게 탁송이 필요할 때</li>
+            <li>자동차 거래 후 안전하게 탁송이 필요할 때</li>
             <li>장거리 이동 및 지방 출장으로 운행이 부담될 때</li>
             <li>법인 차량 및 중요한 차량을 믿고 맡길 기사가 필요할 때</li>
         </ul>
