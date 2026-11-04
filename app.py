@@ -58,14 +58,14 @@ st.markdown("""
     }
     
     /* 🌟 입력창 위의 라벨 글자 색상 및 크기 선명하게 강제 수정 */
-    .stTextInput label, .stRadio label, .stSelectbox label, .stTextArea label, .stDateInput label, .stTimeInput label {
+    .stTextInput label, .stRadio label, .stSelectbox label, .stTextArea label, .stDateInput label {
         color: #F8FAFC !important;
         font-size: 1.05rem !important;
         font-weight: 700 !important;
     }
     
     /* 화이트 폼 입력창 스타일 (순백색 배경, 검은색 볼드체 텍스트) */
-    .stTextInput input, .stSelectbox select, .stTextArea textarea, .stDateInput input, .stTimeInput input {
+    .stTextInput input, .stSelectbox select, .stTextArea textarea, .stDateInput input {
         background-color: #FFFFFF !important;
         color: #000000 !important;
         font-weight: 600 !important;
@@ -175,12 +175,19 @@ with st.form("toksong_form"):
     with col_f:
         transmission = st.radio("변속기 선택", ["오토", "스틱(수동)"], horizontal=True)
         
-    # 탁송 희망 날짜 및 시간 선택
+    # 🌟 직관적인 오전/오후 + 시간 선택 방식
     col_date, col_time = st.columns(2)
     with col_date:
         pickup_date = st.date_input("탁송 희망 날짜", value=datetime.date.today())
     with col_time:
-        pickup_time = st.time_input("탁송 희망 시간", value=datetime.time(10, 0))
+        st.write("<label style='color: #F8FAFC; font-size: 1.05rem; font-weight: 700;'>탁송 희망 시간</label>", unsafe_allow_html=True)
+        t_col1, t_col2, t_col3 = st.columns([1.2, 1, 1])
+        with t_col1:
+            ampm = st.selectbox("구분", ["오전", "오후"], label_visibility="collapsed")
+        with t_col2:
+            hour = st.selectbox("시", [f"{i}시" for i in range(1, 13)], index=9, label_visibility="collapsed") # 기본 10시
+        with t_col3:
+            minute = st.selectbox("분", ["00분", "10분", "20분", "30분", "40분", "50분"], index=0, label_visibility="collapsed")
 
     col_c, col_d = st.columns(2)
     with col_c:
@@ -195,7 +202,8 @@ with st.form("toksong_form"):
     
     if submitted:
         if departure and destination and phone_number and car_number:
-            st.success("🎉 탁송 접수가 정상적으로 완료되었습니다! 확인 후 빠르게 연락드리겠습니다.")
+            selected_time_str = f"{ampm} {hour} {minute}"
+            st.success(f"🎉 탁송 접수가 정상적으로 완료되었습니다! ({pickup_date} {selected_time_str}) 확인 후 빠르게 연락드리겠습니다.")
         else:
             st.error("⚠️ 필수 항목(차량번호, 출발지, 도착지, 연락처)을 모두 입력해 주세요.")
 
