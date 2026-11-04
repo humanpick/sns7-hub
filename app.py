@@ -3,7 +3,7 @@ import datetime
 
 # 1. 페이지 설정 (와이드 레이아웃, 사이드바 숨김)
 st.set_page_config(
-    page_title="후미남 시그니처 로드탁송 & 대리운전",
+    page_title="후미남 시그니처 Road Delivery & 대리운전",
     page_icon="🚗",
     layout="centered",
     initial_sidebar_state="collapsed"
@@ -110,27 +110,27 @@ st.markdown("""
 st.markdown("<br>", unsafe_allow_html=True)
 st.markdown("""
 <div class="glass-card" style="text-align: center;">
-    <div class="hero-title">후미남 시그니처 로드탁송 & 대리운전</div>
-    <p style="color: #CBD5E1; font-size: 1rem; line-height: 1.5; margin-bottom: 15px;">
+    <div class="hero-title">후미남 시그니처 Road Delivery & 대리운전</div>
+    <p style="color: #CBD5E1; font-size: 1rem; line-height: 1.5; margin-bottom: 0;">
         "화려한 수식어 대신, 꺾이지 않는 진정성과 행동으로 증명합니다."<br>
         <span style="color: #38BDF8; font-weight: 600; font-size: 0.9rem;">100% 비흡연 · 철저한 안심 브리핑 · 프리미엄 맞춤 운행</span>
     </p>
 </div>
 """, unsafe_allow_html=True)
 
-# 🌟 고품질 자동차 주행 감성 이미지 삽입
+# 상업적 이용 가능한 무료 고화질 자동차 주행 감성 이미지
 st.image(
     "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80",
     caption="안전과 신뢰를 싣고 목적지까지 완벽하게 이동합니다.",
     use_container_width=True
 )
 
-# 4. 로드탁송이란? 개념 설명 섹션
+# 4. 로드탁송(Road Delivery)이란? 개념 설명 섹션
 st.markdown("""
 <div class="glass-card" style="margin-top: 16px;">
-    <div class="section-header">📌 로드탁송(Road Tak-song)이란?</div>
+    <div class="section-header">📌 로드탁송(Road Delivery)이란?</div>
     <p style="color: #E2E8F0; font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400;">
-        <b>로드탁송</b>은 전문 프로 드라이버가 고객님의 차량에 직접 탑승하여 출발지부터 목적지까지 안전하게 직접 운전하여 이동시키는 프리미엄 차량 탁송 서비스입니다. 자동차 거래, 장거리 이동, 법인 차량 탁송 등 캐리어 트럭이 진입하기 어렵거나 신속하고 안전한 직접 운행이 필요할 때 가장 확실한 선택입니다.
+        <b>로드탁송(Road Delivery)</b>은 숙련된 전문 프로 드라이버가 고객님의 차량에 직접 탑승하여 출발지부터 목적지까지 안전하게 운전하여 이동시키는 차량 탁송 서비스입니다. 중고차/신차 거래, 장거리 이동, 법인 차량 탁송 등 캐리어 트럭 진입이 어렵거나 신속·안전한 직접 운행이 필요할 때 가장 확실한 선택입니다.
     </p>
 </div>
 """, unsafe_allow_html=True)
@@ -180,7 +180,7 @@ st.markdown("""
 st.markdown('<div class="section-header" style="margin-top: 20px;">✍️ 간편 서비스 접수하기</div>', unsafe_allow_html=True)
 
 with st.form("service_form"):
-    service_type = st.radio("신청 서비스 종류", ["로드탁송", "대리운전"], horizontal=True)
+    service_type = st.radio("신청 서비스 종류", ["로드탁송 (Road Delivery)", "대리운전"], horizontal=True)
     
     col_a, col_b = st.columns(2)
     with col_a:
