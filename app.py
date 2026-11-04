@@ -1,4 +1,5 @@
 import streamlit as st
+import datetime
 
 # 1. 페이지 설정 (와이드 레이아웃, 사이드바 숨김)
 st.set_page_config(
@@ -56,15 +57,15 @@ st.markdown("""
         padding-left: 10px;
     }
     
-    /* 🌟 입력창(텍스트박스 등) 위의 라벨 글자 색상 및 크기 선명하게 강제 수정 */
-    .stTextInput label, .stRadio label, .stSelectbox label, .stTextArea label {
+    /* 🌟 입력창 위의 라벨 글자 색상 및 크기 선명하게 강제 수정 */
+    .stTextInput label, .stRadio label, .stSelectbox label, .stTextArea label, .stDateInput label, .stTimeInput label {
         color: #F8FAFC !important;
         font-size: 1.05rem !important;
         font-weight: 700 !important;
     }
     
     /* 화이트 폼 입력창 스타일 (순백색 배경, 검은색 볼드체 텍스트) */
-    .stTextInput input, .stSelectbox select, .stTextArea textarea {
+    .stTextInput input, .stSelectbox select, .stTextArea textarea, .stDateInput input, .stTimeInput input {
         background-color: #FFFFFF !important;
         color: #000000 !important;
         font-weight: 600 !important;
@@ -150,7 +151,7 @@ st.markdown("""
 <div class="glass-card">
     <div class="section-header">📋 탁송 접수 절차</div>
     <p style="color: #E2E8F0; font-size: 0.95rem; margin: 0; line-height: 1.6; font-weight: 500;">
-        <b>1단계:</b> 아래 폼에 차량 정보(차종, 번호, 유종, 변속기)와 출발·도착지를 입력해 주세요.<br>
+        <b>1단계:</b> 아래 폼에 차량 정보, 희망 일시, 출발·도착지를 입력해 주세요.<br>
         <b>2단계:</b> 접수 내용 확인 즉시 안전 운행 가능 여부와 함께 신속하게 연락을 드립니다.<br>
         <b>3단계:</b> 목적지까지 흠집 없이 안전하고 완벽하게 인도해 드립니다.
     </p>
@@ -174,6 +175,13 @@ with st.form("toksong_form"):
     with col_f:
         transmission = st.radio("변속기 선택", ["오토", "스틱(수동)"], horizontal=True)
         
+    # 🌟 탁송 희망 날짜 및 시간 선택 추가
+    col_date, col_time = st.columns(2)
+    with col_date:
+        pickup_date = st.date_input("탁송 희망 날짜", value=datetime.date.today())
+    with col_time:
+        pickup_time = st.time_input("탁송 희망 시간", value=datetime.time(10, 0))
+
     col_c, col_d = st.columns(2)
     with col_c:
         departure = st.text_input("출발지", placeholder="예: 서울 강남구 / 상세 주소")
