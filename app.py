@@ -64,23 +64,23 @@ st.markdown("""
         border-radius: 8px !important;
     }
     
-    /* 버튼 스타일 */
+    /* 접수 버튼 가독성 강화 (퍼플/핑크 그라데이션 및 명확한 화이트 텍스트) */
     .stButton>button {
         width: 100%;
-        background: linear-gradient(135deg, #8B5CF6, #6366F1);
-        color: white;
-        border: none;
+        background: linear-gradient(135deg, #8B5CF6, #EC4899) !important;
+        color: #FFFFFF !important;
+        border: none !important;
         border-radius: 12px;
-        padding: 12px 20px;
-        font-weight: 600;
+        padding: 14px 20px;
+        font-weight: 700 !important;
         font-size: 1.1rem;
-        box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
         transition: all 0.3s ease;
     }
     
     .stButton>button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
+        box-shadow: 0 6px 20px rgba(236, 72, 153, 0.6);
     }
 </style>
 """, unsafe_allow_html=True)
@@ -129,38 +129,39 @@ st.markdown("""
 <div class="glass-card">
     <div class="section-header">📋 탁송 접수 절차</div>
     <p style="color: #CBD5E1; font-size: 0.85rem; margin: 0;">
-        1단계: 아래 폼에 출발지, 도착지, 연락처를 남겨주세요.<br>
+        1단계: 아래 폼에 차량 정보(차종, 번호)와 출발지, 도착지를 남겨주세요.<br>
         2단계: 확인 즉시 안전 운행 가능 여부와 함께 신속하게 연락을 드립니다.<br>
         3단계: 안심하고 맡겨주시면 목적지까지 안전하게 인도해 드립니다.
     </p>
 </div>
 """, unsafe_allow_html=True)
 
-# 6. 실시간 탁송 접수 폼 (st.form으로 감싸 엔터키 실행 지원)
+# 6. 실시간 탁송 접수 폼 (차량번호 추가 및 st.form 적용)
 st.markdown('<div class="section-header" style="margin-top: 15px;">✍️ 간편 탁송 접수하기</div>', unsafe_allow_html=True)
 
 with st.form("toksong_form"):
     col_a, col_b = st.columns(2)
     with col_a:
-        departure = st.text_input("출발지 (예: 서울 강남구 / 상세 주소)", placeholder="출발지를 입력하세요")
+        car_model = st.text_input("차종 (예: 그랜저 / 2024년식)", placeholder="차종을 입력하세요")
     with col_b:
-        destination = st.text_input("도착지 (예: 부산 해운대구 / 상세 주소)", placeholder="도착지를 입력하세요")
+        car_number = st.text_input("차량 번호 (예: 123가 4567)", placeholder="차량 번호를 입력하세요")
         
     col_c, col_d = st.columns(2)
     with col_c:
-        car_model = st.text_input("차종 및 연식 (예: 그랜저 / 2024년식)", placeholder="차량을 입력하세요")
+        departure = st.text_input("출발지 (예: 서울 강남구 / 상세 주소)", placeholder="출발지를 입력하세요")
     with col_d:
-        phone_number = st.text_input("연락처 (휴대폰 번호)", placeholder="010-0000-0000")
+        destination = st.text_input("도착지 (예: 부산 해운대구 / 상세 주소)", placeholder="도착지를 입력하세요")
         
+    phone_number = st.text_input("연락처 (휴대폰 번호)", placeholder="010-0000-0000")
     memo = st.text_area("요청 및 특이사항 (선택)", placeholder="경유지나 특별히 요청하실 사항을 적어주세요.")
     
     submitted = st.form_submit_button("🚀 탁송 신청 및 접수하기")
     
     if submitted:
-        if departure and destination and phone_number:
+        if departure and destination and phone_number and car_number:
             st.success("🎉 탁송 접수가 정상적으로 완료되었습니다! 확인 후 빠르게 연락드리겠습니다.")
         else:
-            st.error("⚠️ 필수 항목(출발지, 도착지, 연락처)을 모두 입력해 주세요.")
+            st.error("⚠️ 필수 항목(차량번호, 출발지, 도착지, 연락처)을 모두 입력해 주세요.")
 
 # 푸터
 st.markdown("""
