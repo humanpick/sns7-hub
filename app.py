@@ -8,7 +8,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# 2. Humanpick 디자인 시스템 CSS 적용 (다크모드, 글래스모피즘, 화이트폼)
+# 2. Humanpick 디자인 시스템 CSS 적용
 st.markdown("""
 <style>
     @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
@@ -63,24 +63,29 @@ st.markdown("""
         font-weight: 600 !important;
         border-radius: 8px !important;
     }
-    
-    /* 접수 버튼 가독성 강화 (퍼플/핑크 그라데이션 및 명확한 화이트 텍스트) */
-    .stButton>button {
-        width: 100%;
+
+    /* 폼 제출 버튼 가독성 강제 보정 */
+    div[data-testid="stForm"] button {
+        width: 100% !important;
         background: linear-gradient(135deg, #8B5CF6, #EC4899) !important;
-        color: #FFFFFF !important;
         border: none !important;
-        border-radius: 12px;
-        padding: 14px 20px;
-        font-weight: 700 !important;
-        font-size: 1.1rem;
-        box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
-        transition: all 0.3s ease;
+        border-radius: 12px !important;
+        padding: 14px 20px !important;
+        box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4) !important;
+        transition: all 0.3s ease !important;
     }
     
-    .stButton>button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(236, 72, 153, 0.6);
+    /* 버튼 내부 텍스트 및 아이콘 색상 강제 지정 */
+    div[data-testid="stForm"] button p, 
+    div[data-testid="stForm"] button span {
+        color: #FFFFFF !important;
+        font-size: 1.1rem !important;
+        font-weight: 700 !important;
+    }
+
+    div[data-testid="stForm"] button:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 20px rgba(236, 72, 153, 0.6) !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -136,7 +141,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# 6. 실시간 탁송 접수 폼 (차량번호 추가 및 st.form 적용)
+# 6. 실시간 탁송 접수 폼
 st.markdown('<div class="section-header" style="margin-top: 15px;">✍️ 간편 탁송 접수하기</div>', unsafe_allow_html=True)
 
 with st.form("toksong_form"):
