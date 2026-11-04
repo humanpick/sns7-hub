@@ -3,13 +3,13 @@ import datetime
 
 # 1. 페이지 설정 (와이드 레이아웃, 사이드바 숨김)
 st.set_page_config(
-    page_title="후미남 시그니처 로드탁송",
+    page_title="후미남 시그니처 로드탁송 & 대리운전",
     page_icon="🚗",
     layout="centered",
     initial_sidebar_state="collapsed"
 )
 
-# 2. Humanpick 디자인 시스템 CSS 적용 (가독성 및 타이포그래피 대폭 강화)
+# 2. Humanpick 디자인 시스템 CSS 적용 (가독성 및 정돈된 UI)
 st.markdown("""
 <style>
     @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
@@ -58,14 +58,14 @@ st.markdown("""
     }
     
     /* 🌟 입력창 위의 라벨 글자 색상 및 크기 선명하게 강제 수정 */
-    .stTextInput label, .stRadio label, .stSelectbox label, .stTextArea label, .stDateInput label {
+    .stTextInput label, .stRadio label, .stSelectbox label, .stTextArea label, .stDateInput label, .stTimeInput label {
         color: #F8FAFC !important;
         font-size: 1.05rem !important;
         font-weight: 700 !important;
     }
     
     /* 화이트 폼 입력창 스타일 (순백색 배경, 검은색 볼드체 텍스트) */
-    .stTextInput input, .stSelectbox select, .stTextArea textarea, .stDateInput input {
+    .stTextInput input, .stSelectbox select, .stTextArea textarea, .stDateInput input, .stTimeInput input {
         background-color: #FFFFFF !important;
         color: #000000 !important;
         font-weight: 600 !important;
@@ -111,7 +111,7 @@ st.markdown("""
 st.markdown("<br>", unsafe_allow_html=True)
 st.markdown("""
 <div class="glass-card">
-    <div class="hero-title">후미남 시그니처 로드탁송</div>
+    <div class="hero-title">후미남 시그니처 로드탁송 & 대리운전</div>
     <p style="text-align: center; color: #CBD5E1; font-size: 1rem; line-height: 1.5; margin-bottom: 0;">
         "화려한 수식어 대신, 꺾이지 않는 진정성과 행동으로 증명합니다."<br>
         <span style="color: #38BDF8; font-weight: 600; font-size: 0.9rem;">100% 비흡연 · 철저한 안심 브리핑 · 프리미엄 맞춤 운행</span>
@@ -119,7 +119,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# 4. 왜 나에게 맡겨야 하는지 & 탁송이 필요한 상황
+# 4. 왜 나에게 맡겨야 하는지 & 서비스 안내
 col1, col2 = st.columns(2)
 
 with col1:
@@ -128,8 +128,8 @@ with col1:
         <div class="section-header">🚗 이런 분께 필요합니다</div>
         <ul style="color: #F1F5F9; font-size: 0.9rem; padding-left: 15px; margin: 0; line-height: 1.7; font-weight: 500;">
             <li>자동차 거래 후 안전하게 탁송이 필요할 때</li>
+            <li>술자리나 야간 일정 후 안전한 대리운전이 필요할 때</li>
             <li>장거리 이동 및 지방 출장으로 운행이 부담될 때</li>
-            <li>법인 차량 및 중요한 차량을 믿고 맡길 기사가 필요할 때</li>
         </ul>
     </div>
     """, unsafe_allow_html=True)
@@ -146,22 +146,25 @@ with col2:
     </div>
     """, unsafe_allow_html=True)
 
-# 5. 탁송 접수 방법 안내
+# 5. 접수 방법 안내
 st.markdown("""
 <div class="glass-card">
-    <div class="section-header">📋 탁송 접수 절차</div>
+    <div class="section-header">📋 서비스 접수 절차</div>
     <p style="color: #E2E8F0; font-size: 0.95rem; margin: 0; line-height: 1.6; font-weight: 500;">
-        <b>1단계:</b> 아래 폼에 차량 정보, 희망 일시, 출발·도착지를 입력해 주세요.<br>
-        <b>2단계:</b> 접수 내용 확인 즉시 안전 운행 가능 여부와 함께 신속하게 연락을 드립니다.<br>
-        <b>3단계:</b> 목적지까지 흠집 없이 안전하고 완벽하게 인도해 드립니다.
+        <b>1단계:</b> 아래 폼에서 서비스 종류(탁송/대리) 및 차량 정보, 희망 일시를 선택해 주세요.<br>
+        <b>2단계:</b> 출발지 및 도착지를 입력하고 접수해 주시면 즉시 확인 연락을 드립니다.<br>
+        <b>3단계:</b> 목적지까지 흠집 없이 안전하고 완벽하게 모셔다 드립니다.
     </p>
 </div>
 """, unsafe_allow_html=True)
 
-# 6. 실시간 탁송 접수 폼
-st.markdown('<div class="section-header" style="margin-top: 20px;">✍️ 간편 탁송 접수하기</div>', unsafe_allow_html=True)
+# 6. 실시간 간편 접수 폼 (탁송 & 대리 통합)
+st.markdown('<div class="section-header" style="margin-top: 20px;">✍️ 간편 서비스 접수하기</div>', unsafe_allow_html=True)
 
-with st.form("toksong_form"):
+with st.form("service_form"):
+    # 🌟 서비스 종류 선택 (탁송 / 대리운전)
+    service_type = st.radio("신청 서비스 종류", ["로드탁송", "대리운전"], horizontal=True)
+    
     col_a, col_b = st.columns(2)
     with col_a:
         car_model = st.text_input("차종", placeholder="예: 그랜저 / 2024년식")
@@ -175,35 +178,27 @@ with st.form("toksong_form"):
     with col_f:
         transmission = st.radio("변속기 선택", ["오토", "스틱(수동)"], horizontal=True)
         
-    # 🌟 직관적인 오전/오후 + 시간 선택 방식
+    # 🌟 깔끔하게 정돈된 날짜 및 시간 선택 입력창
     col_date, col_time = st.columns(2)
     with col_date:
-        pickup_date = st.date_input("탁송 희망 날짜", value=datetime.date.today())
+        pickup_date = st.date_input("희망 날짜", value=datetime.date.today())
     with col_time:
-        st.write("<label style='color: #F8FAFC; font-size: 1.05rem; font-weight: 700;'>탁송 희망 시간</label>", unsafe_allow_html=True)
-        t_col1, t_col2, t_col3 = st.columns([1.2, 1, 1])
-        with t_col1:
-            ampm = st.selectbox("구분", ["오전", "오후"], label_visibility="collapsed")
-        with t_col2:
-            hour = st.selectbox("시", [f"{i}시" for i in range(1, 13)], index=9, label_visibility="collapsed") # 기본 10시
-        with t_col3:
-            minute = st.selectbox("분", ["00분", "10분", "20분", "30분", "40분", "50분"], index=0, label_visibility="collapsed")
+        pickup_time = st.time_input("희망 시간", value=datetime.time(20, 0))
 
     col_c, col_d = st.columns(2)
     with col_c:
         departure = st.text_input("출발지", placeholder="예: 서울 강남구 / 상세 주소")
     with col_d:
-        destination = st.text_input("도착지", placeholder="예: 부산 해운대구 / 상세 주소")
+        destination = st.text_input("도착지", placeholder="예: 경기도 광주시 / 상세 주소")
         
     phone_number = st.text_input("연락처 (휴대폰 번호)", placeholder="010-0000-0000")
     memo = st.text_area("요청 및 특이사항 (선택)", placeholder="경유지나 특별히 요청하실 사항을 적어주세요.")
     
-    submitted = st.form_submit_button("🚀 탁송 신청 및 접수하기")
+    submitted = st.form_submit_button("🚀 서비스 신청 및 접수하기")
     
     if submitted:
         if departure and destination and phone_number and car_number:
-            selected_time_str = f"{ampm} {hour} {minute}"
-            st.success(f"🎉 탁송 접수가 정상적으로 완료되었습니다! ({pickup_date} {selected_time_str}) 확인 후 빠르게 연락드리겠습니다.")
+            st.success(f"🎉 [{service_type}] 접수가 정상적으로 완료되었습니다! ({pickup_date} {pickup_time.strftime('%H:%M')}) 확인 후 빠르게 연락드리겠습니다.")
         else:
             st.error("⚠️ 필수 항목(차량번호, 출발지, 도착지, 연락처)을 모두 입력해 주세요.")
 
