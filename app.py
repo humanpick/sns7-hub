@@ -1,14 +1,14 @@
 import streamlit as st
 
-# 1. 페이지 설정 (제로스크롤 & 와이드 레이아웃 최적화)
+# 1. 페이지 설정 (와이드 레이아웃, 사이드바 숨김)
 st.set_page_config(
-    page_title="후미남 | sns7.kr 통합 허브",
+    page_title="후미남 프리미엄 로드탁송",
     page_icon="🚗",
     layout="centered",
     initial_sidebar_state="collapsed"
 )
 
-# 2. Humanpick 디자인 시스템 CSS 적용 (다크모드, 글래스모피즘, Pretendard)
+# 2. Humanpick 디자인 시스템 CSS 적용 (다크모드, 글래스모피즘, 화이트폼)
 st.markdown("""
 <style>
     @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
@@ -17,15 +17,13 @@ st.markdown("""
         font-family: 'Pretendard', sans-serif;
     }
     
-    /* 전체 배경 네이비 고정 및 스크롤 방지 */
     .stApp {
         background-color: #0B1120;
         color: #FFFFFF;
-        max-width: 1400px;
+        max-width: 1200px;
         margin: 0 auto;
     }
     
-    /* 상하단 불필요한 공백 및 메뉴 숨기기 */
     header, footer {visibility: hidden;}
     
     /* 글래스모피즘 카드 스타일 */
@@ -35,29 +33,38 @@ st.markdown("""
         -webkit-backdrop-filter: blur(12px);
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 16px;
-        padding: 24px;
+        padding: 20px;
         margin-bottom: 16px;
-        text-align: center;
     }
     
-    /* 타이포그래피 강조 */
-    .brand-title {
-        font-size: 1.8rem;
+    .hero-title {
+        font-size: 1.6rem;
         font-weight: 700;
         background: linear-gradient(135deg, #8B5CF6, #EC4899);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        text-align: center;
         margin-bottom: 8px;
     }
     
-    .brand-subtitle {
-        font-size: 0.95rem;
-        color: #94A3B8;
-        line-height: 1.5;
-        margin-bottom: 20px;
+    .section-header {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #38BDF8;
+        margin-bottom: 8px;
+        border-left: 3px solid #8B5CF6;
+        padding-left: 8px;
     }
     
-    /* 커스텀 버튼 스타일 */
+    /* 화이트 폼 스타일 (입력창 순백색 배경, 폰트 굵기 600) */
+    .stTextInput input, .stSelectbox select, .stTextArea textarea {
+        background-color: #FFFFFF !important;
+        color: #000000 !important;
+        font-weight: 600 !important;
+        border-radius: 8px !important;
+    }
+    
+    /* 버튼 스타일 */
     .stButton>button {
         width: 100%;
         background: linear-gradient(135deg, #8B5CF6, #6366F1);
@@ -66,7 +73,7 @@ st.markdown("""
         border-radius: 12px;
         padding: 12px 20px;
         font-weight: 600;
-        font-size: 1rem;
+        font-size: 1.1rem;
         box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
         transition: all 0.3s ease;
     }
@@ -78,45 +85,84 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# 3. 메인 콘텐츠 영역 (제로스크롤 원페이지 뷰)
+# 3. 헤더 및 소개 섹션
 st.markdown("<br>", unsafe_allow_html=True)
-
-# 헤더 & 브랜드 철학 카드
 st.markdown("""
 <div class="glass-card">
-    <div class="brand-title">후미남 : 후회 없는 미소를 짓는 남자</div>
-    <div class="brand-subtitle">
-        "후각과 미각은 잃었지만, 삶을 향한 감각은 선명합니다.<br>
-        요란한 말 대신, 꺾이지 않는 진정성과 행동으로 증명합니다."
-    </div>
+    <div class="hero-title">후미남 프리미엄 로드탁송</div>
+    <p style="text-align: center; color: #94A3B8; font-size: 0.9rem; margin-bottom: 0;">
+        "후각과 미각은 잃었지만, 안전을 향한 감각은 선명합니다."<br>
+        요란한 말 대신, 묵직한 책임감과 행동으로 증명합니다.
+    </p>
 </div>
 """, unsafe_allow_html=True)
 
-# 핵심 서비스 및 정보 연결 게이트웨이 (배너형 카드들)
+# 4. 왜 나에게 맡겨야 하는지 & 탁송이 필요한 상황
 col1, col2 = st.columns(2)
 
 with col1:
     st.markdown("""
-    <div class="glass-card" style="min-height: 180px; display: flex; flex-direction: column; justify-content: center;">
-        <h3 style="color: #38BDF8; font-size: 1.2rem; margin-bottom: 8px;">🚗 프리미엄 로드탁송</h3>
-        <p style="color: #CBD5E1; font-size: 0.85rem; margin-bottom: 12px;">비흡연·장거리 전문, 철저한 차량 검수 및 안심 브리핑 서비스</p>
+    <div class="glass-card" style="min-height: 190px;">
+        <div class="section-header">🚗 이런 분께 필요합니다</div>
+        <ul style="color: #CBD5E1; font-size: 0.85rem; padding-left: 15px; margin: 0; line-height: 1.6;">
+            <li>신차 출고 후 안전하게 탁송이 필요할 때</li>
+            <li>장거리 이동 및 지방 출장으로 운행이 부담될 때</li>
+            <li>법인 차량 및 중요한 차량을 믿고 맡길 기사가 필요할 때</li>
+        </ul>
     </div>
     """, unsafe_allow_html=True)
-    if st.button("탁송 신청 및 가이드 바로가기"):
-        # 외부/서브 사이트 연결 (quote 적용 및 새창 열기 표준)
-        st.markdown('<script>window.open("https://car.sns7.kr", "_blank");</script>', unsafe_allow_html=True)
 
 with col2:
     st.markdown("""
-    <div class="glass-card" style="min-height: 180px; display: flex; flex-direction: column; justify-content: center;">
-        <h3 style="color: #EC4899; font-size: 1.2rem; margin-bottom: 8px;">💼 CEO포털 & 비즈니스</h3>
-        <p style="color: #CBD5E1; font-size: 0.85rem; margin-bottom: 12px;">소상공인 운영 지원 솔루션 및 맞춤 리스크 관리(보험) 허브</p>
+    <div class="glass-card" style="min-height: 190px;">
+        <div class="section-header">🛡️ 왜 후미남인가?</div>
+        <ul style="color: #CBD5E1; font-size: 0.85rem; padding-left: 15px; margin: 0; line-height: 1.6;">
+            <li><b>100% 비흡연 운행</b>으로 쾌적한 실내 유지</li>
+            <li>출발부터 도착까지 철저한 사진/문자 안심 브리핑</li>
+            <li>시련을 딛고 일어선 프로 드라이버의 투철한 안전 의식</li>
+        </ul>
     </div>
     """, unsafe_allow_html=True)
-    if st.button("비즈니스 파트너십 보기"):
-        st.markdown('<script>window.open("https://ceo.sns7.kr", "_blank");</script>', unsafe_allow_html=True)
 
-# 하단 푸터 노트
+# 5. 탁송 접수 방법 안내
+st.markdown("""
+<div class="glass-card">
+    <div class="section-header">📋 탁송 접수 절차</div>
+    <p style="color: #CBD5E1; font-size: 0.85rem; margin: 0;">
+        1단계: 아래 폼에 출발지, 도착지, 연락처를 남겨주세요.<br>
+        2단계: 확인 즉시 안전 운행 가능 여부와 함께 신속하게 연락을 드립니다.<br>
+        3단계: 안심하고 맡겨주시면 목적지까지 안전하게 인도해 드립니다.
+    </p>
+</div>
+""", unsafe_allow_html=True)
+
+# 6. 실시간 탁송 접수 폼 (st.form으로 감싸 엔터키 실행 지원)
+st.markdown('<div class="section-header" style="margin-top: 15px;">✍️ 간편 탁송 접수하기</div>', unsafe_allow_html=True)
+
+with st.form("toksong_form"):
+    col_a, col_b = st.columns(2)
+    with col_a:
+        departure = st.text_input("출발지 (예: 서울 강남구 / 상세 주소)", placeholder="출발지를 입력하세요")
+    with col_b:
+        destination = st.text_input("도착지 (예: 부산 해운대구 / 상세 주소)", placeholder="도착지를 입력하세요")
+        
+    col_c, col_d = st.columns(2)
+    with col_c:
+        car_model = st.text_input("차종 및 연식 (예: 그랜저 / 2024년식)", placeholder="차량을 입력하세요")
+    with col_d:
+        phone_number = st.text_input("연락처 (휴대폰 번호)", placeholder="010-0000-0000")
+        
+    memo = st.text_area("요청 및 특이사항 (선택)", placeholder="경유지나 특별히 요청하실 사항을 적어주세요.")
+    
+    submitted = st.form_submit_button("🚀 탁송 신청 및 접수하기")
+    
+    if submitted:
+        if departure and destination and phone_number:
+            st.success("🎉 탁송 접수가 정상적으로 완료되었습니다! 확인 후 빠르게 연락드리겠습니다.")
+        else:
+            st.error("⚠️ 필수 항목(출발지, 도착지, 연락처)을 모두 입력해 주세요.")
+
+# 푸터
 st.markdown("""
 <div style="text-align: center; color: #64748B; font-size: 0.8rem; margin-top: 20px;">
     © 2026 후미남(HUMINAM). All Rights Reserved. | sns7.kr
