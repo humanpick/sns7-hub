@@ -127,7 +127,7 @@ with col1:
     <div class="glass-card" style="min-height: 210px;">
         <div class="section-header">🚗 이런 분께 필요합니다</div>
         <ul style="color: #F1F5F9; font-size: 0.9rem; padding-left: 15px; margin: 0; line-height: 1.7; font-weight: 500;">
-            <li>신차 출고 후 안전하게 탁송이 필요할 때</li>
+            <li>자동차 거래 후 안전하게 탁송이 필요할 때</li>
             <li>장거리 이동 및 지방 출장으로 운행이 부담될 때</li>
             <li>법인 차량 및 중요한 차량을 믿고 맡길 기사가 필요할 때</li>
         </ul>
@@ -175,7 +175,7 @@ with st.form("toksong_form"):
     with col_f:
         transmission = st.radio("변속기 선택", ["오토", "스틱(수동)"], horizontal=True)
         
-    # 🌟 탁송 희망 날짜 및 시간 선택 추가
+    # 탁송 희망 날짜 및 시간 선택
     col_date, col_time = st.columns(2)
     with col_date:
         pickup_date = st.date_input("탁송 희망 날짜", value=datetime.date.today())
